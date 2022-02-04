@@ -104,26 +104,35 @@ func (sl *singleLinkList) DeleteNodeAtPosition(pos int) {
 }
 
 // // WAP : write code to remove duplicates from an unsorted linked list.
-// func removeDup() {
-// 	sll := NewSingleLinkList("1")
-// 	sll.AddNode("2")
-// 	sll.AddNode("2")
-// 	sll.AddNode("4")
-// 	sll.AddNode("2")
-// 	sll.DisplayNodes()
+func removeDup() {
+	sll := NewSingleLinkList("1")
+	sll.AddNode("2")
+	sll.AddNode("2")
+	sll.AddNode("2")
+	sll.AddNode("4")
+	sll.AddNode("2")
+	sll.DisplayNodes()
 
-// 	head := sll.Head()
-// 	for head.next != nil {
+	head := sll.Head()
+	for head.next != nil {
+		cmpVal := head.value
+		nd := head
+		for nd.next != nil {
+			fmt.Print(nd.value, "->")
+			if nd.next.value == cmpVal {
+				lfNode := nd
+				delNode := nd.next
+				rgNode := nd.next.next
+				lfNode.next = rgNode
+				delNode.next = nil
+			} else {
+				nd = nd.next
+			}
+		}
+		fmt.Print(nd.value)
+		fmt.Println()
+		head = head.next
+	}
 
-// 		cmpVal := head.value
-// 		nd := head
-// 		for nd.next != nil {
-// 			if nd.next.value == cmpVal {
-
-// 			}
-
-// 		}
-
-// 		head = head.next
-// 	}
-// }
+	sll.DisplayNodes()
+}

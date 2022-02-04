@@ -31,3 +31,7 @@ func TestDelLinkList(t *testing.T) {
 	sll.DisplayNodes()
 	sll.DeleteNodeAtPosition(100)
 }
+
+func TestLinkList(t *testing.T) {
+	removeDup()
+}
