@@ -17,3 +17,17 @@ func TestNewLinkList(t *testing.T) {
 	sll.DeleteNode()
 	sll.DisplayNodes()
 }
+
+func TestDelLinkList(t *testing.T) {
+	sll := NewSingleLinkList("1")
+	sll.AddNode("2")
+	sll.AddNode("3")
+	sll.AddNode("4")
+	sll.AddNode("5")
+	sll.DisplayNodes()
+	sll.DeleteNodeAtPosition(1)
+	sll.DeleteNodeAtPosition(4)
+	sll.DeleteNodeAtPosition(2)
+	sll.DisplayNodes()
+	sll.DeleteNodeAtPosition(100)
+}
