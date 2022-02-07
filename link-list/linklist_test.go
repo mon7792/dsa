@@ -35,3 +35,7 @@ func TestDelLinkList(t *testing.T) {
 func TestLinkList(t *testing.T) {
 	removeDup()
 }
+
+func TestRemoveNthNodeFromLast(t *testing.T) {
+	removeNthNodeFromLast()
+}

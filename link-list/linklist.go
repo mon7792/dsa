@@ -75,6 +75,9 @@ func (sl *singleLinkList) DeleteNodeAtPosition(pos int) {
 		sl.node = nil
 		return
 	}
+	if pos < 1 {
+		return
+	}
 	//  remove 1st element in the list
 	if pos == 1 {
 		head := sl.node
@@ -103,7 +106,7 @@ func (sl *singleLinkList) DeleteNodeAtPosition(pos int) {
 	delNode.next = nil
 }
 
-// // WAP : write code to remove duplicates from an unsorted linked list.
+// 1. WAP : write code to remove duplicates from an unsorted linked list.
 func removeDup() {
 	sll := NewSingleLinkList("1")
 	sll.AddNode("2")
@@ -134,5 +137,31 @@ func removeDup() {
 		head = head.next
 	}
 
+	sll.DisplayNodes()
+}
+
+// 2. WAP : write algorithm to remove the Kth to last element of the single linked list.
+func removeNthNodeFromLast() {
+	nodePosToDel := 2
+	sll := NewSingleLinkList("A")
+	sll.AddNode("B")
+	sll.AddNode("C")
+	sll.AddNode("D")
+	sll.AddNode("E")
+	sll.AddNode("F")
+	sll.DisplayNodes()
+
+	// count the length of the linklist
+	linkLen := 0
+	head := sll.Head()
+	for head.next != nil {
+		linkLen++
+		head = head.next
+	}
+	linkLen++
+
+	fmt.Println("THE LENGTH OF LINK LIST:", linkLen)
+
+	sll.DeleteNodeAtPosition(linkLen - nodePosToDel + 1)
 	sll.DisplayNodes()
 }
