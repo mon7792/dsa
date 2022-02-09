@@ -39,3 +39,7 @@ func TestLinkList(t *testing.T) {
 func TestRemoveNthNodeFromLast(t *testing.T) {
 	removeNthNodeFromLast()
 }
+
+func TestMiddleNode(t *testing.T) {
+	removeMiddleNode()
+}

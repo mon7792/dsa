@@ -165,3 +165,40 @@ func removeNthNodeFromLast() {
 	sll.DeleteNodeAtPosition(linkLen - nodePosToDel + 1)
 	sll.DisplayNodes()
 }
+
+func removeMiddleNode() {
+	// Approach 1: Loop through the linklist get the total length.
+	// get the ciel number of len/2
+	// remove the node at that position
+
+	// Approach 2: runner technique.
+	//  two pointer:
+	//  1. slow pointer : iterates one step at a time
+	//  2. fast pointer : iterates two step at a time
+
+	// slow pointer starts late
+	// fast pointer check till node.next != nil || node.next.next != nil
+
+	//  Q: what happens to the missing pointer.
+
+	sll := NewSingleLinkList("A")
+	sll.AddNode("B")
+	sll.AddNode("C")
+	sll.AddNode("D")
+	sll.AddNode("E")
+	sll.AddNode("F")
+	sll.DisplayNodes()
+
+	prevNd := sll.Head()
+	slowPtr := sll.Head()
+	fastPtr := sll.Head()
+
+	for fastPtr.next.next != nil {
+
+		fastPtr = fastPtr.next.next
+		prevNd = slowPtr
+		slowPtr = slowPtr.next
+	}
+	prevNd.next = prevNd.next.next
+	sll.DisplayNodes()
+}
