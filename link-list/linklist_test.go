@@ -47,3 +47,7 @@ func TestMiddleNode(t *testing.T) {
 func TestPartitionLinkList(t *testing.T) {
 	partitionLinkList()
 }
+
+func TestSumList(t *testing.T) {
+	sumList()
+}

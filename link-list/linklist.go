@@ -116,6 +116,14 @@ func (sl *singleLinkList) DeleteNodeAtPosition(pos int) {
 	delNode.next = nil
 }
 
+func helperStrToInt(value string) int {
+	intVal, err := strconv.Atoi(value)
+	if err != nil {
+		panic(err)
+	}
+	return intVal
+}
+
 // 1. WAP : write code to remove duplicates from an unsorted linked list.
 func removeDup() {
 	sll := NewSingleLinkList("1")
@@ -266,4 +274,46 @@ func partitionLinkList() {
 	}
 
 	sll.DisplayNodes()
+}
+
+// WAP 1: Write a program to add numbers represented in the reverse linklist.
+// INPUT: (7 -> 1 -> 6) + (5 -> 9 -> 2)  => (2 -> 1 -> 9)
+func sumList() {
+	// reverse order
+	ftll := NewSingleLinkList("7")
+	ftll.AddNode("1")
+	ftll.AddNode("6")
+
+	sdll := NewSingleLinkList("5")
+	sdll.AddNode("9")
+	sdll.AddNode("2")
+	// helperStrToInt()
+
+	fstValue := ""
+	sndValue := ""
+	fstPtr := ftll.Head()
+	sndPtr := sdll.Head()
+	for fstPtr.next != nil {
+
+		fstValue = fstPtr.value + fstValue
+		fstPtr = fstPtr.next
+	}
+	fstValue = fstPtr.value + fstValue
+
+	for sndPtr.next != nil {
+
+		sndValue = sndPtr.value + sndValue
+		sndPtr = sndPtr.next
+	}
+	sndValue = sndPtr.value + sndValue
+
+	totalVAl := fmt.Sprintf("%d", helperStrToInt(fstValue)+helperStrToInt(sndValue))
+
+	resll := NewSingleLinkList(string(totalVAl[len(totalVAl)-1]))
+	for i := len(totalVAl) - 2; i >= 0; i-- {
+		resll.AddNode(string(totalVAl[i]))
+	}
+
+	resll.DisplayNodes()
+
 }
