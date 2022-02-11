@@ -43,3 +43,7 @@ func TestRemoveNthNodeFromLast(t *testing.T) {
 func TestMiddleNode(t *testing.T) {
 	removeMiddleNode()
 }
+
+func TestPartitionLinkList(t *testing.T) {
+	partitionLinkList()
+}

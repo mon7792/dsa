@@ -1,6 +1,9 @@
 package linklist
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 //  node struct represent the node in the linklist.
 //  it has two fields value and pointer to next node.
@@ -16,6 +19,7 @@ type singleLinkList struct {
 // SingleLinkListFunc exposes the function realted to single link list.
 type SingleLinkListFunc interface {
 	AddNode(value string)
+	AddNodeAtStart(value string)
 	DisplayNodes()
 	DeleteNode()
 	Head() *node
@@ -39,6 +43,12 @@ func (sl *singleLinkList) AddNode(value string) {
 		n = n.next
 	}
 	n.next = &node{value: value}
+}
+
+// AddNodes add new node at the end of the list.
+func (sl *singleLinkList) AddNodeAtStart(value string) {
+	n := sl.node
+	sl.node = &node{value: value, next: n}
 }
 
 // DisplayNodes display all the nodes from the start to end.
@@ -200,5 +210,60 @@ func removeMiddleNode() {
 		slowPtr = slowPtr.next
 	}
 	prevNd.next = prevNd.next.next
+	sll.DisplayNodes()
+}
+
+func partitionLinkList() {
+
+	partValue := 5
+	//  APPROACH 1: any number less than the value should be added at the start of the list
+	//  TODO: move the value towards the second half of the partition.
+	sll := NewSingleLinkList("3")
+	sll.AddNode("5")
+	sll.AddNode("8")
+	sll.AddNode("5")
+	sll.AddNode("10")
+	sll.AddNode("2")
+	sll.AddNode("1")
+	sll.DisplayNodes()
+
+	iterPtr := sll.Head()
+	// if headPtr.value >= val
+	// remove capture the head element and put it into lastelem
+	prevNd := iterPtr
+	if iterPtr.next != nil {
+		iterPtr = iterPtr.next
+	}
+
+	for iterPtr.next != nil {
+		//  iterPtr.value < value
+		//  add the element at the start of the list.
+		intVal, err := strconv.Atoi(iterPtr.value)
+		if err != nil {
+			panic(err)
+		}
+		if intVal < partValue {
+			//  remove the current node.
+			prevNd.next = iterPtr.next
+			//  add it to the start of the list
+			sll.AddNodeAtStart(iterPtr.value)
+		} else {
+			prevNd = iterPtr
+		}
+		iterPtr = iterPtr.next
+	}
+
+	//  last node
+	intVal, err := strconv.Atoi(iterPtr.value)
+	if err != nil {
+		panic(err)
+	}
+	if intVal < partValue {
+		//  remove the current node.
+		prevNd.next = iterPtr.next
+		//  add it to the start of the list
+		sll.AddNodeAtStart(iterPtr.value)
+	}
+
 	sll.DisplayNodes()
 }
