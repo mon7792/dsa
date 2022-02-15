@@ -51,3 +51,8 @@ func TestPartitionLinkList(t *testing.T) {
 func TestSumList(t *testing.T) {
 	sumList()
 }
+
+func TestPalindromeCheck(t *testing.T) {
+	res := palindromeCheck()
+	t.Log(res)
+}

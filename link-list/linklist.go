@@ -317,3 +317,48 @@ func sumList() {
 	resll.DisplayNodes()
 
 }
+
+// WAP function to check if the linklist is palindrome.
+func palindromeCheck() bool {
+	sll := NewSingleLinkList("m")
+	sll.AddNode("a")
+	// sll.AddNode("d")
+	sll.AddNode("a")
+	sll.AddNode("m")
+	sll.DisplayNodes()
+
+	fastPtr := sll.Head()
+	slowPtr := sll.Head()
+
+	linkLen := 1
+
+	for fastPtr.next != nil && fastPtr.next.next != nil {
+
+		slowPtr = slowPtr.next
+		fastPtr = fastPtr.next.next
+		linkLen = linkLen + 1
+	}
+
+	iter := 0
+	if linkLen%2 != 0 {
+		iter = 1
+	}
+
+	for slowPtr.next != nil {
+		slowPtr = slowPtr.next
+		nodePos := linkLen - iter
+		cmpNode := sll.Head()
+
+		for nodePos > 1 {
+			cmpNode = cmpNode.next
+			nodePos--
+		}
+
+		if cmpNode.value != slowPtr.value {
+			return false
+		}
+		iter++
+	}
+
+	return true
+}
