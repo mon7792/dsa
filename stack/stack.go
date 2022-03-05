@@ -71,10 +71,60 @@ func (s *stackNodes) Display() {
 
 }
 
+// stackArr represent the array representation of the stack.
 type stackArr struct {
 	topPt int
 	size  int
 	arr   []string
+}
+
+// NewStackArr exposes the array based implementation for stack
+func NewStackArr() StackFunction {
+	return &stackArr{
+		topPt: -1,
+		size:  0,
+		arr:   make([]string, 0),
+	}
+}
+
+// Pop the element from the stack.
+func (st *stackArr) Pop() {
+	if st.size == 0 {
+		return
+	}
+
+	st.arr = append(st.arr[:st.topPt], st.arr[st.topPt+1:]...)
+
+	st.topPt = st.topPt - 1
+	st.size = st.size - 1
+
+}
+
+// Push value in the array.
+func (st *stackArr) Push(value string) {
+	st.topPt = st.topPt + 1
+	st.size = st.size + 1
+
+	st.arr = append(st.arr, value)
+}
+
+// Peek value in the array.
+func (st *stackArr) Peek() string {
+	if st.size == 0 {
+		return ""
+	}
+	return st.arr[st.topPt]
+}
+
+// Display elements in the stack.
+func (st *stackArr) Display() {
+	if st.size == 0 {
+		return
+	}
+	fmt.Println("ELEMENT IN STACK")
+	for i := st.topPt; i >= 0; i-- {
+		fmt.Println(st.arr[i])
+	}
 }
 
 func stackInArray(stackElem ...string) {
@@ -97,7 +147,6 @@ func stackInArray(stackElem ...string) {
 }
 
 // func threeStackOneArray() {
-
 // 	arr := make([]string, 10, 20)
 // 	fmt.
 // }

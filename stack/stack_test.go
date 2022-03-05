@@ -31,5 +31,18 @@ func TestStack(t *testing.T) {
 }
 
 func TestStackArr(t *testing.T) {
-	stackInArray("1", "2", "3", "4")
+	// stackInArray("1", "2", "3", "4")
+	st := NewStackArr()
+
+	st.Display()
+	st.Push("1")
+	st.Push("2")
+	st.Push("3")
+	st.Push("4")
+
+	st.Display()
+	st.Pop()
+	st.Pop()
+
+	st.Display()
 }
