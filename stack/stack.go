@@ -70,3 +70,34 @@ func (s *stackNodes) Display() {
 	fmt.Println("----")
 
 }
+
+type stackArr struct {
+	topPt int
+	size  int
+	arr   []string
+}
+
+func stackInArray(stackElem ...string) {
+
+	// load size at once
+	stArr := stackArr{
+		arr: make([]string, 0),
+	}
+
+	// load stack elem in the array.
+	for i := range stackElem {
+		stArr.topPt = i
+		stArr.size = i + 1
+		stArr.arr = append(stArr.arr, stackElem[i])
+
+	}
+
+	fmt.Println(stArr.topPt, stArr.size, stArr.arr)
+
+}
+
+// func threeStackOneArray() {
+
+// 	arr := make([]string, 10, 20)
+// 	fmt.
+// }

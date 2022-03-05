@@ -29,3 +29,7 @@ func TestStack(t *testing.T) {
 	t.Log(st.Peek())
 
 }
+
+func TestStackArr(t *testing.T) {
+	stackInArray("1", "2", "3", "4")
+}
