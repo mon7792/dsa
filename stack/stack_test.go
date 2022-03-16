@@ -1,6 +1,9 @@
 package stack
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestStack(t *testing.T) {
 	// 1,2,3,4
@@ -41,6 +44,31 @@ func TestStackArr(t *testing.T) {
 	st.Push("4")
 
 	st.Display()
+	st.Pop()
+	st.Pop()
+
+	st.Display()
+}
+
+func TestStackOfPlates(t *testing.T) {
+
+	st := NewStackOfPlates(3)
+
+	st.Push("1")
+	st.Push("2")
+	st.Push("3")
+
+	st.Push("4")
+	st.Push("5")
+	st.Push("6")
+	st.Push("7")
+	st.Display()
+
+	fmt.Println("==========")
+	st.Pop()
+	st.Pop()
+	st.Pop()
+	st.Pop()
 	st.Pop()
 	st.Pop()
 
