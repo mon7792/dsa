@@ -236,3 +236,63 @@ func (ps *platesStack) Pop() {
 }
 
 //  IMPLEMENT STACKOFPLATES IN DIFFERENT WAY.
+
+//  WAP IMPLEMENT A QUEUE USING TWO STACK
+type queueRepresentation struct {
+	inbox  StackFunction
+	outbox StackFunction
+}
+
+type QueueFunc interface {
+	Enqueue(value string)
+	DEnqueue()
+	Display()
+}
+
+func NewQueueRepresentation() QueueFunc {
+	qs := &queueRepresentation{
+		inbox:  NewStack("dummy"),
+		outbox: NewStack("dummy"),
+	}
+
+	qs.inbox.Pop()
+	qs.outbox.Pop()
+
+	return qs
+}
+
+func (q *queueRepresentation) Enqueue(value string) {
+	q.inbox.Push(value)
+}
+
+func (q *queueRepresentation) DEnqueue() {
+
+	for q.inbox.Peek() != "" {
+		//  1. get the value at the top
+		val := q.inbox.Peek()
+		//  2. pop it
+		q.inbox.Pop()
+		// 3. push it to out box
+		q.outbox.Push(val)
+	}
+
+	q.outbox.Pop()
+
+	for q.outbox.Peek() != "" {
+		val := q.outbox.Peek()
+		//  2. pop it
+		q.outbox.Pop()
+		// 3. push it to out box
+		q.inbox.Push(val)
+	}
+
+}
+
+func (q *queueRepresentation) Display() {
+	fmt.Println("DISPLAY THE QUEUE")
+	fmt.Println("OUTBOX:")
+	q.outbox.Display()
+	fmt.Println("INBOX:")
+	q.inbox.Display()
+
+}

@@ -74,3 +74,18 @@ func TestStackOfPlates(t *testing.T) {
 
 	st.Display()
 }
+
+func TestQueueInStack(t *testing.T) {
+
+	qst := NewQueueRepresentation()
+
+	qst.Enqueue("1")
+	qst.Enqueue("2")
+	qst.Enqueue("3")
+
+	qst.DEnqueue()
+	qst.DEnqueue()
+	qst.DEnqueue()
+
+	qst.Display()
+}
