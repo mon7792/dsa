@@ -1,6 +1,10 @@
 package tree
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/mon7792/dsa/tree/queue"
+)
 
 // tree is a collection of nodes and edges t = {N, E} map[nodes][]edges
 // create a binary tree.
@@ -51,4 +55,24 @@ func PostorderTraverse(tr *node) {
 	PostorderTraverse(tr.left)
 	PostorderTraverse(tr.right)
 	fmt.Printf(" %d -> ", tr.data)
+}
+
+// BFS using queue
+func BFS(tr *node) {
+	q := queue.New()
+
+	q.Enqueue(tr)
+
+	for !q.IsEmpty() {
+		nd := q.DeEnqueue().(*node)
+		fmt.Printf("%d ->", nd.data)
+		if nd.left != nil {
+			q.Enqueue(nd.left)
+		}
+
+		if nd.right != nil {
+			q.Enqueue(nd.right)
+		}
+	}
+
 }

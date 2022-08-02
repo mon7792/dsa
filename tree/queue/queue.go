@@ -4,7 +4,7 @@ import "fmt"
 
 //  node stores the value
 type node struct {
-	data int
+	data interface{}
 	next *node
 }
 
@@ -16,9 +16,9 @@ type linkStore struct {
 }
 
 type LinkStoreFunc interface {
-	Enqueue(item int)
+	Enqueue(item interface{})
 	IsEmpty() bool
-	DeEnqueue()
+	DeEnqueue() interface{}
 	Display()
 }
 
@@ -28,7 +28,7 @@ func New() LinkStoreFunc {
 }
 
 // Enqueue add the item to the queue.
-func (q *linkStore) Enqueue(item int) {
+func (q *linkStore) Enqueue(item interface{}) {
 	if q.IsEmpty() {
 		q.front = &node{data: item}
 		q.back = q.front
@@ -45,18 +45,20 @@ func (q *linkStore) Enqueue(item int) {
 }
 
 // DeEnqueue remove the element from the back.
-func (q *linkStore) DeEnqueue() {
+func (q *linkStore) DeEnqueue() interface{} {
 	if q.size == 0 {
 		q.front = nil
 		q.back = nil
-		return
+		return nil
 	}
 
 	// decrease the size
 	q.size--
 
+	rmElem := q.front.data
 	// remove the element from the front
 	q.front = q.front.next
+	return rmElem
 }
 
 // IsEmpty checks if any element is present in the queue.

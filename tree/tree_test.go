@@ -25,3 +25,9 @@ func TestPostorderTraverse(t *testing.T) {
 	PostorderTraverse(dummyTree())
 	fmt.Println()
 }
+
+func TestBFS(t *testing.T) {
+	t.Log("BFS")
+	BFS(dummyTree())
+	fmt.Println()
+}
