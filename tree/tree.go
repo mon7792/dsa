@@ -5,50 +5,63 @@ import "fmt"
 // tree is a collection of nodes and edges t = {N, E} map[nodes][]edges
 // create a binary tree.
 
-//  node stores the value
+// node stores the value
 type node struct {
 	data  int
 	left  *node
 	right *node
 }
 
-// store the element of array in tree balanced tree [1,2,3,4,5]
 func dummyTree() *node {
-	return &node{data: 1, left: &node{data: 2, left: &node{data: 4}, right: &node{data: 5}}, right: &node{data: 3}}
+	return &node{data: 1, left: &node{data: 12, left: &node{data: 5}, right: &node{data: 6}}, right: &node{data: 9}}
 }
 
-// Tree Traversal : Visiting every node in the tree.
-// types: Inorder, Preorder, Postorder
-
-// Inorder: Left - Root - Right
-func InorderTraverse(tr *node) {
-	if tr == nil {
+// Inorder Recusrive Traversal
+func InOrder(nd *node) {
+	if nd == nil {
 		return
 	}
-
-	InorderTraverse(tr.left)
-	fmt.Printf(" %d -> ", tr.data)
-	InorderTraverse(tr.right)
+	InOrder(nd.left)
+	fmt.Println(nd.data)
+	InOrder(nd.right)
 }
 
-// Preorder:  Root - Left - Right
-func PreorderTraverse(tr *node) {
-	if tr == nil {
+// Preorder Recusrive Traversal
+func PreOrder(nd *node) {
+	if nd == nil {
 		return
 	}
-
-	fmt.Printf(" %d -> ", tr.data)
-	PreorderTraverse(tr.left)
-	PreorderTraverse(tr.right)
+	fmt.Println(nd.data)
+	PreOrder(nd.left)
+	PreOrder(nd.right)
 }
 
-// Postorder:  Left - Right - Root
-func PostorderTraverse(tr *node) {
-	if tr == nil {
+// Postorder Recusrive Traversal
+func PostOrder(nd *node) {
+	if nd == nil {
 		return
 	}
+	PostOrder(nd.left)
+	PostOrder(nd.right)
+	fmt.Println(nd.data)
+}
 
-	PostorderTraverse(tr.left)
-	PostorderTraverse(tr.right)
-	fmt.Printf(" %d -> ", tr.data)
+// CheckIsFullBinaryTree
+func CheckIsFullBinaryTree(nd *node) bool {
+
+	// traverse through evey node and check if the children is 0 or 2
+	if nd == nil {
+		return true
+	}
+
+	if nd.left == nil && nd.right == nil {
+		return true
+	}
+
+	if nd.left != nil && nd.right != nil {
+		return CheckIsFullBinaryTree(nd.left) && CheckIsFullBinaryTree(nd.right)
+	}
+
+	return false
+
 }

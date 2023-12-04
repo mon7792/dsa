@@ -1,27 +1,32 @@
 package tree
 
 import (
-	"fmt"
 	"testing"
 )
 
 func TestInorderTraverse(t *testing.T) {
 	t.Log("Recursion InOrder Traversal")
 	t.Log("Exp: 4 ->  2 ->  5 ->  1 ->  3 -> ")
-	InorderTraverse(dummyTree())
-	fmt.Println()
+	InOrder(dummyTree())
+
 }
 
 func TestPreorderTraverse(t *testing.T) {
 	t.Log("Recursion PreOrder Traversal")
 	t.Log("Exp: 1 ->  2 ->  4 ->  5 ->  3 -> ")
-	PreorderTraverse(dummyTree())
-	fmt.Println()
+	PreOrder(dummyTree())
+
 }
 
 func TestPostorderTraverse(t *testing.T) {
 	t.Log("Recursion PostOrder Traversal")
 	t.Log("Exp: 4 ->  5 ->  2 ->  3 ->  1 -> ")
-	PostorderTraverse(dummyTree())
-	fmt.Println()
+	PostOrder(dummyTree())
+}
+
+func TestCheckIsFullBinaryTree(t *testing.T) {
+	t.Log("check if the dummy tree is full binary tree")
+	t.Log("Exp: 4 ->  5 ->  2 ->  3 ->  1 -> ")
+	result := CheckIsFullBinaryTree(dummyTree())
+	t.Log(result)
 }
