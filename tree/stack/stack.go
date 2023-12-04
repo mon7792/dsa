@@ -3,7 +3,7 @@ package stack
 import "fmt"
 
 type node struct {
-	data int
+	data interface{}
 	next *node
 }
 
@@ -14,10 +14,10 @@ type linkStack struct {
 
 // LinkStackFunc exposes all the stack functionality.
 type LinkStackFunc interface {
-	Push(item int)
+	Push(item interface{})
 	Pop()
 	IsEmpty() bool
-	Peek() int
+	Peek() interface{}
 	Display()
 }
 
@@ -27,7 +27,7 @@ func New() LinkStackFunc {
 }
 
 // Push add the element to the stack.
-func (s *linkStack) Push(item int) {
+func (s *linkStack) Push(item interface{}) {
 	if s.IsEmpty() {
 		s.head = &node{data: item}
 		s.size = 1
@@ -55,7 +55,7 @@ func (s *linkStack) IsEmpty() bool {
 }
 
 // Peek return the element at the top of the stack.
-func (s *linkStack) Peek() int {
+func (s *linkStack) Peek() interface{} {
 	return s.head.data
 }
 

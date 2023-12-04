@@ -30,3 +30,9 @@ func TestCheckIsFullBinaryTree(t *testing.T) {
 	result := CheckIsFullBinaryTree(dummyTree())
 	t.Log(result)
 }
+
+func TestBFS(t *testing.T) {
+	t.Log("BFS")
+	BFS(dummyTree())
+	fmt.Println()
+}
