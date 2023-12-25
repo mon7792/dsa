@@ -31,8 +31,10 @@ func TestCheckIsFullBinaryTree(t *testing.T) {
 	t.Log(result)
 }
 
-func TestBFS(t *testing.T) {
-	t.Log("BFS")
-	BFS(dummyTree())
-	fmt.Println()
+func TestInOrderStackTraverse(t *testing.T) {
+	InOrderStackTraverse(dummyTree())
+}
+
+func TestMaxDepthRecursive(t *testing.T) {
+	MaxDepthRecursive(dummyTree())
 }

@@ -15,7 +15,7 @@ type linkStack struct {
 // LinkStackFunc exposes all the stack functionality.
 type LinkStackFunc interface {
 	Push(item interface{})
-	Pop()
+	Pop() interface{}
 	IsEmpty() bool
 	Peek() interface{}
 	Display()
@@ -39,14 +39,16 @@ func (s *linkStack) Push(item interface{}) {
 }
 
 // Pop remove the top element from the stack
-func (s *linkStack) Pop() {
+func (s *linkStack) Pop() interface{} {
 	if s.IsEmpty() {
 		s.head = nil
 		s.size = 0
-		return
+		return nil
 	}
+	nd := s.head
 	s.head = s.head.next
 	s.size--
+	return nd.data
 }
 
 // IsEmpty() check if the stack is empty
@@ -56,6 +58,9 @@ func (s *linkStack) IsEmpty() bool {
 
 // Peek return the element at the top of the stack.
 func (s *linkStack) Peek() interface{} {
+	if s.IsEmpty() {
+		return nil
+	}
 	return s.head.data
 }
 

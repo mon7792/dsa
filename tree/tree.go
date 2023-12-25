@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/mon7792/dsa/tree/queue"
+	"github.com/mon7792/dsa/tree/stack"
 )
 
 // tree is a collection of nodes and edges t = {N, E} map[nodes][]edges
@@ -50,6 +51,28 @@ func PostOrder(nd *node) {
 	fmt.Println(nd.data)
 }
 
+// InOrderStackTraverse traverse through the tree using stack: dfs
+func InOrderStackTraverse(crNd *node) {
+	st := stack.New()
+	nd := crNd
+	for {
+		if nd != nil {
+			st.Push(*nd)
+			nd = nd.left
+		} else {
+			if st.IsEmpty() {
+				break
+			}
+			curr := st.Pop()
+
+			// type conversion and fix here
+			crrNd, _ := curr.(node)
+			fmt.Println(crrNd.data)
+			nd = crrNd.right
+		}
+	}
+}
+
 // CheckIsFullBinaryTree
 func CheckIsFullBinaryTree(nd *node) bool {
 
@@ -67,7 +90,6 @@ func CheckIsFullBinaryTree(nd *node) bool {
 	}
 
 	return false
-
 }
 
 // BFS using queue
@@ -88,4 +110,30 @@ func BFS(tr *node) {
 		}
 	}
 
+}
+
+// MaxDepthRecursive return the maximum depth of the tree using recurisve technique
+func MaxDepthRecursive(root *node) {
+	maxDepth := helperMaxDepthRecursive(root, 0)
+
+	fmt.Println("Max Depth:", maxDepth)
+}
+
+func helperMaxDepthRecursive(root *node, level int) int {
+	if root == nil {
+		return level - 1
+	}
+
+	ldist := helperMaxDepthRecursive(root.left, level+1)
+	rdist := helperMaxDepthRecursive(root.right, level+1)
+
+	return helperMax(ldist, rdist)
+}
+
+// helperMax return the max number
+func helperMax(a int, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
